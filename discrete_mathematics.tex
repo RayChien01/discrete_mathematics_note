@@ -1,0 +1,387 @@
+\documentclass[12pt,a4paper]{report}
+
+\usepackage{relsize}
+\usepackage{graphicx}
+\usepackage[margin=3cm]{geometry} 
+\usepackage{fancyhdr}
+\usepackage{titling} 
+\usepackage{mathtools,amsthm,amssymb} 
+\usepackage[shortlabels,inline]{enumitem}
+\usepackage{indentfirst} 
+\usepackage{float}
+% \usepackage{setspace}
+\usepackage{tikz}\usetikzlibrary{arrows.meta,decorations.pathmorphing}
+\usepackage{hyperref}\hypersetup{
+    colorlinks=true,
+    linkcolor=black, 
+    filecolor=blue,
+    urlcolor=blue,
+    citecolor=cyan
+}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{property}[theorem]{Property}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{problem}[theorem]{Problem}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}      
+\newtheorem*{solution}{Solution}
+\newtheorem*{exercise}{Exercise} 
+\newtheorem*{claim}{Claim}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\nullity}{\operatorname{nullity}}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+
+\renewcommand{\headrulewidth}{0.4pt} 
+\renewcommand{\footrulewidth}{0.4pt} 
+\setlength{\headheight}{15pt}  
+\setlength{\parindent}{22pt}   
+\pagestyle{fancy}             
+\lhead{\rightmark}              
+\chead{}                     
+\rhead{}          
+\lfoot{\theauthor}        
+\cfoot{}
+\rfoot{\thepage}              
+\linespread{1.5}
+% \onehalfspacing
+\setcounter{tocdepth}{1} % hide subsections in tableofcontents
+
+\title{Discrete Mathematics}
+\author{Ray Chien}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\chapter{Logic}
+
+\section{Propositional Logic}
+
+\begin{definition}[Proposition]
+    A \textbf{proposition} is a statement with presice meaning which have a truth value \textbf{true} or \textbf{flase}. 
+\end{definition}
+
+\begin{definition}[Operators]
+    An \textbf{operator} or \textbf{connective} combines one or more operand express into a larger expresstion.
+\begin{table}[h]
+    \centering
+    \caption{Operator of propositions (Ordered by Precedence)}
+    \begin{tabular}{c|c|c|c|c}
+        Formal Name & Nickname & Arity & Symbol & Precedence\\
+        \hline
+        Negation operator & NOT & Unary & $\neg$ & 1\\
+        \hline
+        Conjunction operator & AND & Binary & $\land$ & 2 \\
+        \hline
+        Exclusive disjunction operator & XOR & Binary & $\oplus$ & 3 \\
+        \hline
+        Disjunction operator & OR & Binary & $\lor$ & 4 \\
+        \hline
+        Implication operator & IMPLIES & Binary & $\rightarrow$ & 5 \\
+        \hline
+        Biconditional operator & IFF & Binary & $\leftrightarrow$ & 6
+    \end{tabular}
+\end{table}
+\end{definition}
+
+
+
+\begin{definition}[Converse, Inverse, and Contrapositive]
+    The three statements of an inplication are defined as followed:
+    \begin{align*}
+        \text{Converse: }& q \rightarrow p\\
+        \text{Inverse: }& \neg p \rightarrow \neg q\\
+        \text{Contropositive: }& \neg q \rightarrow p. 
+    \end{align*}
+\end{definition}
+
+The meaning of the contropositive of $\neg q \rightarrow \neg p$ is same as $p \rightarrow q.$ Note that the ``positive'' in 
+``contropositive'' actually means ``position'' in English.
+\begin{example}
+    $p \lor (\neg p \land q) \equiv (p \lor \neg p) \land (p \lor q) \equiv T \land (p \lor q) \equiv p \lor q.$
+\end{example}
+
+
+\begin{definition}[Equivalence]
+    Compound proposition p is logically equivalent to compound proposition q, written $p \equiv q$, if the compound proposition $p \leftrightarrow q$ is a tautology.
+\end{definition}
+
+\begin{definition}[Tautology]
+    A tautology is a compound proposition that is always true.
+\end{definition}
+
+For example, $p \lor \neg p$ is a tautology.
+
+
+\begin{definition}[Contradiction]
+    A contradiction is a compound proposition that is always false.
+\end{definition}
+
+For example, $p \land \neg p$ is a contradiction.
+
+Some equivence laws are listed as followed:
+
+\begin{theorem}[Some Logical Equivalences]
+\mbox{}
+\begin{enumerate}
+    \item Identity: $p \land T \equiv p \quad p \lor F \equiv F.$
+    \item Domination: $p \land F \equiv F \quad p \lor T \equiv T.$
+    \item Idempotent: $p \land p \equiv p \lor p \equiv p.$
+    \item Double negation: $\neg \neg p \equiv p.$
+    \item Associative: $(p \land q) \land r = p \land (q \land r). \quad (p \lor q) \lor r \equiv p \lor (q \lor r).$
+    \item Distribution: $p \land (q \lor r) = (p \land q) \lor (p \land r) \quad p \lor (q \land r) = (p \lor q) \land (p \lor r).$
+\end{enumerate} 
+\end{theorem}
+
+\begin{theorem}[Logical Equivalences Involving Conditional Statements]
+    \mbox{}
+    \begin{enumerate}
+        \item $p \to q \equiv \neg p \lor q.$
+        \item $p \to q \equiv \neg q \to \neg p.$
+        \item $(p \to q) \land (p \to r) \equiv p \to (q \land r).$
+        \item $(p \to r) \land (q \to r) \equiv (p \lor q) \to r.$
+        \item $(p \to q) \lor (p \to r) \equiv p \to (q \lor r).$
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Logical Equivalences Involving Biconditional Statements]
+    \mbox{}
+\begin{enumerate}
+    \item $p \leftrightarrow q \equiv (p \rightarrow q) \land (q \rightarrow p).$
+    \item $p \leftrightarrow q \equiv \neg p \leftrightarrow \neg q.$
+    \item $p \leftrightarrow q \equiv (p \land q) \lor (\neg p \land \neg q).$
+    \item $\neg(p \leftrightarrow q) \equiv p \leftrightarrow \neg q.$
+    \item $p \leftrightarrow q \equiv \neg(p \oplus q).$
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Logical Equivalences Involving Exclusive Disjunction]
+\mbox{}
+\begin{enumerate}
+    \item $p \oplus q \equiv (p \lor q) \land \neg(p \land q) \equiv (p \land \neg q) \lor (\neg p \land q) \equiv \neg (p \leftrightarrow q).$
+\end{enumerate}
+\end{theorem}
+
+\section{Predicate Logic}
+
+\begin{definition}[Predicate logic]
+    A \textbf{predicate logic} is an extension of propositional logic that permits concisely reasoning about whole classes of entities.
+\end{definition}
+
+For example, ``For all $x \in \{1, 2, 3\}, x < 5$'' is a proposition with $x$ as the \textbf{object}, \{1, 2, 3\} as the \textbf{universess of discourse}, and $x < 5$ as the \textbf{predicate} or the \textbf{propositional function} mapping $x \to \{T, F\}.$ Furthermore, ``For all'' is a kind of \textbf{quantifier,} which is defined as followed.
+
+\chapter{Proofs}
+
+\section{Inference and Introduction}
+
+\begin{definition}[Proofs]
+    A \textbf{proof} is a correct(well-reasoned, logically valid) and complete(clear, detailed) argument that rigorously and undeniably establishes the truth of a mathematical statement.
+\end{definition}
+
+\begin{definition}[Theorems]
+    A \textbf{theorem} is a statement that has been proven to be true.
+\end{definition}
+
+\begin{definition}[Axioms, Postulates, Hypotheses, Premises]
+    An \textbf{axiom, postulate, hypotheses,} or \textbf{premises} is an assumption defining the structure about which we are reasoning.
+\end{definition}
+
+\begin{definition}[Rules of Inference]
+    A \textbf{rule of inference} is a pattern of logically valid deductions from hypotheses to conclusions.
+\end{definition}
+
+\begin{definition}[Lemmas]
+    A \textbf{lemma} is a minor theorem used as stepping-stone to proving a major theorem.
+\end{definition}
+
+\begin{definition}[Corollaries]
+    A \textbf{corollary} is a minor theorem proved as an easy consequence of major theorem.
+\end{definition}
+
+\begin{definition}[Conjectures]
+    A \textbf{conjecture} is a statement whose truth value has not been proven.
+\end{definition}
+
+\begin{definition}[Theories]
+    A \textbf{theory} is a set of all theorems that can be proven from a given set of axioms.
+\end{definition}
+
+Now we talk about \textbf{inference rules} to help us construct proofs. Inference rules are tautologies allows us to proof the consequence true by antecedents, that is
+
+\[\text{antecedent 1} \land \text{antecedent 2} \land \ldots \rightarrow \text{consequence},\]
+
+\noindent or we write
+
+\begin{center}
+    \begin{tabular}{c}
+        antecedent 1\\
+        antecedent 2\dots\\
+        \hline
+        $\therefore$ consequence
+    \end{tabular} 
+\end{center}
+
+Here are several rules:
+
+\noindent 1. Rule of addition
+\begin{center}
+    \begin{tabular}{c}
+        $p$\\
+        \hline
+        $\therefore p \lor q$
+    \end{tabular} 
+\end{center}
+
+\noindent 2. Rule of simplification
+\begin{center}
+    \begin{tabular}{c}
+        $p \land q$\\
+        \hline
+        $\therefore p$
+    \end{tabular} 
+\end{center}
+
+\noindent 3. Rule of conjunction
+\begin{center}
+    \begin{tabular}{c}
+        $p$\\
+        $q$\\
+        \hline
+        $\therefore p \land q$
+    \end{tabular} 
+\end{center}
+
+\noindent 4. Rule of modus ponens
+\begin{center}
+    \begin{tabular}{c}
+        $p$\\
+        $p \rightarrow q$\\
+        \hline
+        $\therefore q$
+    \end{tabular} 
+\end{center}
+
+\noindent 5. Rule of modus tollens (This kind of proof is called \textbf{indirect/ contrapositive proof}, example: $a$ is rational, $b$ is irrational, prove that $a + b$ is irrational.)
+\begin{center}
+    \begin{tabular}{c}
+        $\neg q$\\
+        $p \rightarrow q$\\
+        \hline
+        $\therefore \neg p$
+    \end{tabular} 
+\end{center}
+
+\noindent 6. Rule of hypothetical syllogism
+\begin{center}
+    \begin{tabular}{c}
+        $p \rightarrow q$\\
+        $q \rightarrow r$\\
+        \hline
+        $\therefore p \rightarrow r$
+    \end{tabular} 
+\end{center}
+
+\noindent 7. Rule of disjunctive syllogism
+\begin{center}
+    \begin{tabular}{c}
+        $p \lor q$\\
+        $\neg p$\\
+        \hline
+        $\therefore q$
+    \end{tabular} 
+\end{center}
+
+Another proof sumilar to indirect proof is \textbf{proof by contradiction}, that is, to show that $p$ is true, we assume $\neg p$ is true, and then find a tautology that is $\neg p \rightarrow (q \land \neg q) \equiv F,$ then we know that $p$ must be true. (For example, the proof of ``$\sqrt{2}$ is irrational'')
+
+\section{Methods and Strategy}
+
+A proof of a statement of the form $\exists x P(x)$ is called an \textbf{existence proof}. If the proof demonstrate how actually find or construct a specific element $a$ such that $P(a)$ is true, then it is called a \textbf{constructive proof}. Otherwise, it is called a \textbf{nonconstructive proof}.
+
+\begin{example}[An Constructive Proof]
+    Prove that for any integer $n > 0,$ there exists a sequence of $n$ consecutive composite integers.
+\end{example}
+
+\begin{proof}
+    Consider $(n + 1)! + i + 1$ for $i = 1, 2, 3, \ldots, n$. We know that $i + 1|(n + 1)! + i$.
+\end{proof}
+
+\begin{example}[An Non-Constructive Proof]
+    Prove tha there are infinitely many prime numbers.
+\end{example}
+
+\begin{proof}
+    We show that $\forall n \, \exists p \, (p > n) \land (p \, \text{is prime}).$ Consider $n! + 1,$ since $n! + 1 > 1$, so $n! + 1$ is either prime or composite. Using proof by case, if $n! + 1$ is prime, then we find $p = n! +1 > n$. Otherwise, if $n! + 1$ is composite, it must have prime factor $p.$ If $p \leq n$, then $n! + 1$ mod $p = 1$. A contradiction. Therefore, we have $p > n.$ 
+\end{proof}
+
+\chapter{Set Theory}
+
+\section{Definition and Relations}
+
+\begin{definition}[Sets]
+    A \textbf{set} is a type of structure representing an unordered collection of zero or more distinct objects.
+\end{definition}
+
+There are two kinds of notation representing sets. First, we can denot a set $S$ by listing all of its elements in curly braces. For example $\{1, 2, 3\}$. Note that $\{1, 1, 2, 3\}$ and $\{3, 2, 1\}$ have the same meaning because elements of a set is unordered and distinct. Second, a set in the set builder notation represents a set of all elements satisfying a proposition over a domain. For example, $\{x | x > 0\}$ over $\mathbb{R}.$
+
+\begin{definition}[Equality of Sets]
+    Two sets are declared to be \textbf{equal} if and only if they contain excactly the same elements.
+\end{definition}
+
+Some symbles represents spcial infite sets, including
+\begin{enumerate}
+    \item Natual numbers: $\mathbb{N} = \{0, 1, 2, \ldots\}.$
+    \item Integers: $\mathbb Z.$
+    \item Real numbers: $\mathbb R.$
+    \item Empty set, or null: $\phi$
+\end{enumerate}
+
+\begin{definition}[The Empty Set, or Null]
+    $\phi$ represents the \textbf{empty set}, or \textbf{null}, which is the unique set that contains no elements.
+\end{definition}
+
+Note that $\phi = \{\} = \{x | F\}.$ Now lets look about relations. A basic set relations is \textbf{member of}. We write $x \in S$ if $x$ is an element or member of set $S$. Now we can define set equality in terms of $\in$ relation:
+
+\[\forall S, T: (S = T) \leftrightarrow (\forall x: x \in S \leftrightarrow x \in T).\]
+
+Also, we have 
+
+\[\neg \exists x: x \in \phi.\]
+
+\begin{definition}[Subsets, Supersets]
+    Let $S, T$ be two sets. If $\forall x: x \in S \to x \in T$, we say that $S$ is a subset of $T$, denoted $S \subseteq T$, or we can say that $T$ is a superset of $S$, denoted $T \supseteq S.$ Furthermore, $\not\subseteq$ and $\not\supseteq$ denotes the negative statements.
+\end{definition}
+
+\begin{theorem}
+    For any set $S$, $S \subseteq S.$
+\end{theorem}
+
+\begin{proof}
+    $\forall x: x \in S \to x \in S$ is true.
+\end{proof}
+
+\begin{theorem}
+    For any set $S$, $\phi \subseteq S$ 
+\end{theorem}
+
+\begin{proof}
+    Since $\forall x: x \in \phi$ is false, therefore, $\forall x: x \in \phi \to x \in S$ is true.
+\end{proof}
+
+\end{document}
