@@ -349,23 +349,23 @@ Some symbles represents spcial infite sets, including
     \item Natual numbers: $\mathbb{N} = \{0, 1, 2, \ldots\}.$
     \item Integers: $\mathbb Z.$
     \item Real numbers: $\mathbb R.$
-    \item Empty set, or null: $\phi$
+    \item Empty set, or null: $\varnothing$
 \end{enumerate}
 
 \begin{definition}[The Empty Set, or Null]
-    $\phi$ represents the \textbf{empty set}, or \textbf{null}, which is the unique set that contains no elements.
+    $\varnothing$ represents the \textbf{empty set}, or \textbf{null}, which is the unique set that contains no elements.
 \end{definition}
 
-Note that $\phi = \{\} = \{x | F\}.$ Now lets look about relations. A basic set relations is \textbf{member of}. We write $x \in S$ if $x$ is an element or member of set $S$. Now we can define set equality in terms of $\in$ relation:
+Note that $\varnothing = \{\} = \{x | F\}.$ Now lets look about relations. A basic set relations is \textbf{member of}. We write $x \in S$ if $x$ is an element or member of set $S$. Now we can define set equality in terms of $\in$ relation:
 
 \[\forall S, T: (S = T) \leftrightarrow (\forall x: x \in S \leftrightarrow x \in T).\]
 
 Also, we have 
 
-\[\neg \exists x: x \in \phi.\]
+\[\neg \exists x: x \in \varnothing.\]
 
 \begin{definition}[Subsets, Supersets]
-    Let $S, T$ be two sets. If $\forall x: x \in S \to x \in T$, we say that $S$ is a subset of $T$, denoted $S \subseteq T$, or we can say that $T$ is a superset of $S$, denoted $T \supseteq S.$ Furthermore, $\not\subseteq$ and $\not\supseteq$ denotes the negative statements.
+    Let $S, T$ be two sets. If $\forall x: x \in S \to x \in T$, we say that $S$ is a \textbf{subset} of $T$, denoted $S \subseteq T$, and $T$ is a \textbf{superset} of $S$, denoted $T \supseteq S.$ Furthermore, $\not\subseteq$ and $\not\supseteq$ denotes the negative statements.
 \end{definition}
 
 \begin{theorem}
@@ -377,11 +377,25 @@ Also, we have
 \end{proof}
 
 \begin{theorem}
-    For any set $S$, $\phi \subseteq S$ 
+    For any set $S$, $\varnothing \subseteq S.$ 
 \end{theorem}
 
 \begin{proof}
-    Since $\forall x: x \in \phi$ is false, therefore, $\forall x: x \in \phi \to x \in S$ is true.
+    Since $\forall x: x \in \varnothing$ is false, therefore, $\forall x: x \in \varnothing \to x \in S$ is true.
 \end{proof}
 
+\begin{definition}[Strict/Proper Subets and Supersets]
+    Let $S, T$ be two sets. If $S \subseteq T \land S \neq T$, we say that $S$ is a \textbf{proper/strict subset} of $T$, denoted $S \subset T$, and $T$ is a \textbf{proper/strict superset} of $S$, denoted $T \supset S.$ Furthermore, $\not\subset$ and $\not\supset$ denotes the negative statements.
+\end{definition}
+
+\begin{definition}[Cardinality]
+    The \textbf{cardinality} of a set $S$, denoted $|S|$, is a measure of how many different elements $S$ has.
+\end{definition}
+
+For example, $|\varnothing| = 0, |\{1, 2\}| = 2.$ If $|S| \in \mathbb{N},$ we say that $S$ is \textbf{finite}, otherwise, we say that $S$ is \textbf{infinite}.
+
+\begin{definition}[Power Sets]
+    Let $S$ be a set, the \textbf{power set} of $S$
+    \[P(S) \coloneqq \{x | x \subset S\}.\]
+\end{definition}
 \end{document}
