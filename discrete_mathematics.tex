@@ -349,7 +349,7 @@ Some symbles represents spcial infite sets, including
     \item Natual numbers: $\mathbb{N} = \{0, 1, 2, \ldots\}.$
     \item Integers: $\mathbb Z.$
     \item Real numbers: $\mathbb R.$
-    \item Empty set, or null: $\varnothing$
+    \item Empty set, or null: $\varnothing.$
 \end{enumerate}
 
 \begin{definition}[The Empty Set, or Null]
@@ -398,4 +398,111 @@ For example, $|\varnothing| = 0, |\{1, 2\}| = 2.$ If $|S| \in \mathbb{N},$ we sa
     Let $S$ be a set, the \textbf{power set} of $S$
     \[P(S) \coloneqq \{x | x \subset S\}.\]
 \end{definition}
+
+\begin{definition}[Cartesion Products]
+    For sets $A_1, A_2, \ldots, A_n$, their \textbf{Cartesian product}
+    \[A \times B \coloneqq \{(a_1, a_2, \ldots, a_n)| a_1 \in A_1 \land a_2 \in A_2, \ldots \land a_n \in A_n.
+    \}\]
+\end{definition}
+
+\begin{definition}[Union]
+    Let $A$ and $B$ be sets. The \textbf{union} of the sets $A$ and $B$ is defined as
+    \[A \cup B \coloneq \{x | x \in A \lor x \in B\}.\]
+\end{definition}
+
+\begin{definition}[Intersection]
+    Let $A$ and $B$ be sets. The \textbf{intersection} of the sets $A$ and $B$ is defined as
+    \[A \cap B \coloneq \{x | x \in A \land x \in B\}.\]
+\end{definition}
+
+\begin{definition}[Disjoint]
+    Let $A$ and $B$ be sets. If 
+    \[A \cap B = \varnothing,\]
+    we say that $A$ and $B$ are \textbf{disjoint.}
+\end{definition}
+
+\begin{definition}[Difference, Complement]
+    Let $A$ and $B$ be sets. The \textbf{difference} of $A$ and $B$, or the \textbf{complement} of $B$ with respect to $A$
+    \[A - B \coloneq \{x | x \in A \land x \notin B\}.\]
+    The complement of the set $A$ with respect to the universal set $U$, is called the \textbf{complement} of $A$, denoted by $\bar{A}.$
+\end{definition}
+
+\chapter{Functions}
+\section{Introduction}
+
+\begin{definition}[Function]
+    Let $A$ and $B$ be nonempty sets. A \textbf{function} $f$ from $A$ to $B$ is an assignment of exactly one element of $B$ to each element o f$A$. We write \[f(a) = b\] if $b$ is the unique elemtne of $B$ assigned by the funciton $f$ to the element $a$ of $A$. If $f$ is a function from $A$ to $B$, we write $f:A \to B$.
+\end{definition}
+
+\begin{definition}[Domain, Codomain, Image, Preimage, Range, map]
+    If $f$ is a function from $A$ to $B$, we say that $A$ is the \textbf{domain} of $f$ and $B$ is the \textbf{codomain} of $f$. If $f(a) = b$, we say that $b$ is the \textbf{image} of $a$ and $a$ is a \textbf{preimage} of $b$. The \textbf{range}, or \textbf{image} of $f$ is the set of all image of elements of $A$. Also, $f$ \textbf{maps} $A$ to $B$.
+\end{definition}
+
+\begin{definition}[Operator]
+    An $n$-ary \textbf{operator} over the set $S$ is any function from the set of ordered n-tuples of elements of $S$, to $S$ itself.
+\end{definition}
+
+\begin{definition}[One-To-One, Injections]
+    A function $f$ from $A$ to $B$ is said to be \textbf{one-to-one}, or \textbf{injective}, or an \textbf{injection} if and only if 
+    \[\forall a, b \in A f(a) = f(b) \to a = b.\]
+\end{definition}
+
+\begin{definition}[Onto, Surjections]
+    A function $f$ from $A$ to $B$ is called \textbf{onto}, \textbf{surjective}, or a \textbf{surjection}, if and only if 
+    \[\forall b \in B(\exists a \in A \quad f(a) = b).\]
+\end{definition}
+
+\begin{definition}[Bijections]
+    A function $f$ is a \textbf{one-to-one correspondence,} or \textbf{bijective,} or a \textbf{bijection,} if it is both one-to-one and onto.
+\end{definition}
+
+\begin{definition}[Inverse Functions]
+    Let $f$ be a one-to-one correspondence from the set $A$ to the set $B$. The \textbf{inverse function} $f:B \to A$ of $f$ is defined as
+    \[\forall b \in B \, f^{-1}(b) = a \to f(a) = b.\]
+\end{definition}
+
+\begin{definition}[Composition]
+    Let $g$ be a function from the set $A$to the set $B$ and let $f$ be a function from the set $B$ to the set $C$. The \textbf{composition} of the functions $f$ and $g$ denoted for all $a \in A$ by $(f \circ g)(a) = f(g(a)).$
+\end{definition}
+
+\begin{definition}
+    The sets $A$ and $B$ have the same cardinality, that is $|A| = |B|$ if and only if there is a one-to-one correspondence from $A$ to $B$. 
+\end{definition}
+
+\begin{definition}
+    If there is a one-to-one function from $A$ to $B$, the cardinality of $A$ is less than of the same as th ecardinality of $B$, that is $|A| \leq |B|$. If $|A| \leq |B|$ and $A$ and $B$ have different cardinality, then $|A| < |B|$.
+\end{definition}
+
+\begin{remark}
+    It doesn't give separate meaning to $|A|$ and $|B|$ for infinite sets.
+\end{remark}
+
+\begin{definition}[Countable]
+    A set that is either finite or has the same cardinality of $\Z^+$ is called \textbf{countable.} A set that is not countable is called \textbf{uncountable.}
+\end{definition}
+
+\begin{example}
+    The set of odd positive integers $A$ is countable because we have the one-to-one correspondence $f:\Z^+ \to A, f(x) = 2x - 1.$
+\end{example}
+
+\begin{theorem}
+    If elements in a set $S$ can be listed as a series, and for any elements, it also appears once in the seriec and can be found at a finite $n$-th term, then the set is countable.  
+\end{theorem}
+
+\begin{proof}
+    Let the series presents as $s_1, s_2, \ldots$, then the function $f:Z^+ \to S, f(z) = s_z$ is a one-to-one correspondence.
+\end{proof}
+
+\begin{theorem}
+    If $A$ and $B$ are countable, then $A \cup B$ is also countable.
+\end{theorem}
+
+\begin{proof}
+    If $A$ or $B$ is a finite set, then it is either trivial or being the Hilbert's Grand Hotel. If $A$ and $B$ are both infinte sets, then let the elements in $A$ are $a_1, b_2, \ldots$ and those in $B$ are $b_1, b_2, \ldots$. We can construct a series $a_1, b_1, a_2, b_2, \ldots$ to list all elements in $A \cup B$.
+\end{proof}
+
+\begin{theorem}[Cantor–Schröder–Bernstein Theorem]
+    If $|A| \leq |B|$ and $|B| \leq |A|$, then $|A| = |B|$.
+\end{theorem}
+
 \end{document}
