@@ -9,6 +9,7 @@
 \usepackage[shortlabels,inline]{enumitem}
 \usepackage{indentfirst} 
 \usepackage{float}
+\usepackage{cancel}
 % \usepackage{setspace}
 \usepackage{tikz}\usetikzlibrary{arrows.meta,decorations.pathmorphing}
 \usepackage{hyperref}\hypersetup{
@@ -400,9 +401,9 @@ For example, $|\varnothing| = 0, |\{1, 2\}| = 2.$ If $|S| \in \mathbb{N},$ we sa
 \end{definition}
 
 \begin{definition}[Cartesion Products]
-    For sets $A_1, A_2, \ldots, A_n$, their \textbf{Cartesian product}
-    \[A \times B \coloneqq \{(a_1, a_2, \ldots, a_n)| a_1 \in A_1 \land a_2 \in A_2, \ldots \land a_n \in A_n.
-    \}\]
+    For sets $A_1, A_2, \ldots, A_n$, their \textbf{Cartesian product} is defined as
+    \[\prod_{i = 1}^n A_i \coloneqq \{(a_1, a_2, \ldots, a_n)| a_1 \in A_1 \land a_2 \in A_2, \ldots \land a_n \in A_n
+    \}.\]
 \end{definition}
 
 \begin{definition}[Union]
@@ -504,5 +505,96 @@ For example, $|\varnothing| = 0, |\{1, 2\}| = 2.$ If $|S| \in \mathbb{N},$ we sa
 \begin{theorem}[Cantor–Schröder–Bernstein Theorem]
     If $|A| \leq |B|$ and $|B| \leq |A|$, then $|A| = |B|$.
 \end{theorem}
+
+\section{Generating Functions}
+
+\begin{definition}[Generating Functions]
+    The \textbf{generaging function} for the sequence $\{a_k\}$ of real numbers is the infinite series
+    \[G(x) = \sum_{k = 0}^{\infty} a_k x^k\]    
+\end{definition}
+
+\begin{theorem}
+    If $A(x) = \sum_{k = 0}^{\infty} a_k x^k$ and $B(x) = \sum_{k = 0}^{\infty} b_k x^k$ are generating functions, and $x$ is in the interval that $A$ and $B$ absolute converges, then $a_k = b_k$.
+\end{theorem}
+
+\begin{proof}
+    Don't be as regious as \url{zhenverse.dev.page}, just simply do $k$-th derivatives and take $x = 0$ and know that $a_{k + 1} = b_{k + 1}$.
+\end{proof}
+
+\begin{theorem}
+    Let $f = \sum_{k = 0}^{\infty} a_k x^k$ and $g = \sum_{k = 0}^{\infty} b_k x^k$. Then 
+    \[f + g = \sum_{k = 0}^{\infty} (a_k + b_k) x^k \quad \text{and} \quad fg = \sum_{k = 0}^{\infty} \left(\sum_{j = 0}^{k}a_j b_{k - j}\right)x^k.\]
+\end{theorem}
+
+\begin{definition}[Extended Binomial Coefficient]
+    Let $u \in \mathbb{R}$ and $k \in \mathbb{N}$. Then the \textbf{extended binomial coefficient} $\binom{u}{k}$ is defined by
+\[
+\binom{u}{k} = \begin{cases} 
+  \dfrac{u(u-1)(u-2)\cdots(u-k+1)}{k!} & \text{if } k > 0 \\[8pt] 
+  1 & \text{if } k = 0 \\
+\end{cases}
+\]
+\end{definition}
+
+\begin{example}
+    Let $-n \in \mathbb{N}$, then 
+    \[\binom{-n}{r} = \frac{(-n)(-n - 1)\cdots(-n - r + 1)}{r!}\]
+    \[= (-1)^r \frac{(n + r - 1)(n + r - 2) \cdots (n)}{r!}\]
+    \[= (-1)^r \operatorname{C}(n + r - 1, r).\]
+\end{example}
+
+\begin{theorem}
+    Let $x \in (-1, 1)$ and $u \in \mathbb{R}$. Then
+    \[(1 + x)^u = \sum_{k = 0}^{\infty} \binom{u}{k} x^k.\]
+\end{theorem}
+
+\begin{proof}
+    By maclaurin series.
+\end{proof}
+
+\begin{example}
+    Fibonacci sequence referred to the sequence $\{F_n\}$ that 
+    \[F_n = F_{n - 1} + F_{n - 2} \quad \text{for} \quad  n \geq 2\]
+    and $F_0 = 0$ and $F_1 = 1$.
+    Let $G = \sum_{k = 0}^{\infty} F_k x^k$ be the generating function of Fibonacci sequence. We have 
+    \[\sum_{k = 2}^{\infty} F_k x^k = \sum_{k = 2}^{\infty} F_{k - 1} x^k + \sum_{k = 2}^{\infty} F_{k - 2} x^k\]
+    \[\sum_{k = 0}^{\infty} F_k x^k - F_0 - F_1 x = x \sum_{k = 0}^{\infty} F_{k} x^k + x^2 \sum_{k = 0}^{\infty} F_{k} x^k\]
+    \[G = \frac{x}{1 - x - x^2}\]
+    \[= \frac{1}{\sqrt{5}}(\frac{1}{1 - \frac{1 + \sqrt{5}}{2}x} + \frac{-1}{1 - \frac{1 - \sqrt{5}}{2}x})\]
+    Therefore, 
+    \[F_n = \frac{1}{\sqrt{5}}\left(\left(\frac{1 + \sqrt{5}}{2}\right)^n - \left(\frac{1 - \sqrt{5}}{2}\right)^n \right).\]
+\end{example}
+
+\chapter{Relations}
+
+\section{Introduction}
+
+\begin{definition}[Binary Relaitions]
+    Let $A$ and $B$ be sets. A \textbf{binary relation} from $A$ to $B$ is a subset of $A \times B$.
+\end{definition}
+
+\begin{definition}[Inverse Relations]
+    Let $R: A \to B$ be any binary relation. Then $R^{-1}$, the \textbf{inverse} of $R$, is the binary relation defined by 
+    \[R^{-1} \coloneq \{(b, a)|(a, b) = R\}.\]
+\end{definition}
+
+\begin{definition}[Complements of Relations]
+    Let $R: A \to B$ be any binary relation. Then, $\cancel R: A \to B$, the \textbf{complement} of $R$, is the binary relation defined by
+    \[\cancel{R} \coloneq \{(a, b)|(a, b) \neq R\}.\]
+\end{definition}
+
+\begin{definition}[Relations on sets]
+    A \textbf{relation on} set $A$ is a binary relation from $A$ to $A$
+\end{definition}
+
+\begin{definition}[Reflexive]
+    A relation $R: A \to A$ is called \textbf{reflexive} if $(a, a) \in R$.
+\end{definition}
+
+\begin{definition}[Identity relations]
+    The \textbf{identity relation} $I_A$ an a set $A$ is the set $\{(a, a)|a \in A\}.$
+\end{definition}
+
+irreflexive Symmetry and Anti-symmetry
 
 \end{document}
